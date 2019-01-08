@@ -6,8 +6,9 @@ type Device = { address: string; id: string; model: string }
 const discovery = new MagicHomeDiscovery()
 
 discovery
-	.scan(500, function(err: any, devices: Device[]) {
+	.scan(1000, function(err: any, devices: Device[]) {
 		console.log(devices)
+		console.log(err)
 	})
 	.then((devices: Device[]) => {
 		devices.forEach(device => {
@@ -16,10 +17,10 @@ discovery
 				console.log(`Turning on ${device.model}`)
 			})
 
-			setTimeout(() => {
-				light.turnOff(() => {
-					console.log(`Turning off ${device.model}`)
-				})
-			}, 2000)
+			// setTimeout(() => {
+			// 	light.turnOff(() => {
+			// 		console.log(`Turning off ${device.model}`)
+			// 	})
+			// }, 2000)
 		})
 	})
